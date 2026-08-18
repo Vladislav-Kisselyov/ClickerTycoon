@@ -1,0 +1,273 @@
+:root {
+  --bg: #1c1730;
+  --panel: #241d3d;
+  --panel-border: #392f5e;
+  --accent: #ff9f43;
+  --accent-2: #7c5cff;
+  --text: #f2eefc;
+  --text-dim: #ada2c9;
+  --success: #4fd68b;
+  --danger: #ff6b6b;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #2c2450 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(180deg, rgba(124,92,255,0.25), transparent);
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.topbar-title { display: flex; align-items: center; gap: 12px; }
+.cat-emoji { font-size: 40px; }
+.topbar-title h1 { margin: 0; font-size: 20px; }
+.stage-name { margin: 2px 0 0; color: var(--accent); font-size: 13px; font-weight: 600; }
+
+.topbar-resource { text-align: right; }
+.resource-value { font-size: 26px; font-weight: 800; color: var(--accent); }
+.resource-label { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .05em; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-areas:
+    "click upgrades"
+    "click monetization";
+  gap: 16px;
+  padding: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.click-panel { grid-area: click; }
+.upgrades-panel { grid-area: upgrades; }
+.monetization-panel { grid-area: monetization; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.panel h2 { margin: 0 0 12px; font-size: 16px; }
+.sim-badge {
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(255,159,67,.18);
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.stats-row { display: flex; gap: 10px; margin-bottom: 14px; }
+.stat {
+  flex: 1;
+  background: rgba(255,255,255,.04);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.stat-label { display: block; font-size: 11px; color: var(--text-dim); margin-bottom: 4px; }
+.stat-value { display: block; font-size: 16px; font-weight: 700; }
+
+.active-effects { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; min-height: 4px; }
+.effect-chip {
+  background: rgba(124,92,255,.22);
+  border: 1px solid var(--accent-2);
+  color: var(--text);
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.crisis-banner {
+  background: rgba(255,107,107,.15);
+  border: 1px solid var(--danger);
+  color: #ffb3b3;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.hidden { display: none !important; }
+
+.click-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 30px 0 20px;
+}
+
+.click-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 999px;
+  width: 190px;
+  height: 190px;
+  background: radial-gradient(circle at 35% 30%, #ffcf8f, var(--accent) 70%);
+  box-shadow: 0 10px 30px rgba(255,159,67,.35), inset 0 -6px 0 rgba(0,0,0,.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform .06s ease;
+  color: #241a04;
+}
+.click-button:active { transform: scale(.94); }
+.click-button-emoji { font-size: 56px; }
+.click-button-text { font-weight: 700; font-size: 14px; }
+
+.floating-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+.floating-number {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, 0);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--success);
+  animation: floatUp 900ms ease-out forwards;
+  white-space: nowrap;
+}
+.floating-number.crit { color: var(--accent); font-size: 26px; }
+
+@keyframes floatUp {
+  from { opacity: 1; transform: translate(-50%, 0); }
+  to { opacity: 0; transform: translate(-50%, -70px); }
+}
+
+.stage-progress { margin-top: 6px; }
+.stage-progress-label {
+  display: flex; justify-content: space-between;
+  font-size: 12px; color: var(--text-dim); margin-bottom: 6px;
+}
+.stage-progress-bar {
+  height: 10px; border-radius: 999px; background: rgba(255,255,255,.08); overflow: hidden;
+}
+.stage-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  transition: width .4s ease;
+}
+.stage-description { font-size: 12px; color: var(--text-dim); margin: 10px 0 0; }
+
+.upgrades-list, .monetization-list { display: flex; flex-direction: column; gap: 10px; }
+
+.upgrade-card, .offer-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.upgrade-card.locked, .offer-card.disabled { opacity: .5; }
+.upgrade-icon, .offer-icon { font-size: 26px; width: 34px; text-align: center; }
+.upgrade-info, .offer-info { flex: 1; min-width: 0; }
+.upgrade-info h3, .offer-info h3 { margin: 0 0 2px; font-size: 14px; }
+.upgrade-info p, .offer-info p { margin: 0; font-size: 11.5px; color: var(--text-dim); }
+.upgrade-meta { font-size: 11px; color: var(--accent); margin-top: 3px; }
+.mechanic-tag {
+  display: inline-block;
+  font-size: 9.5px;
+  background: rgba(79,214,139,.18);
+  color: var(--success);
+  border-radius: 6px;
+  padding: 1px 5px;
+  margin-left: 6px;
+}
+
+.buy-button, .offer-button {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  background: var(--accent-2);
+  color: #fff;
+  min-width: 84px;
+}
+.buy-button:disabled, .offer-button:disabled {
+  cursor: not-allowed;
+  background: #3c3560;
+  color: #8a80ad;
+}
+
+.toast-container {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 50;
+  max-width: 280px;
+}
+.toast {
+  background: #2a2350;
+  border: 1px solid var(--accent-2);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+  animation: toastIn .25s ease;
+}
+.toast.error { border-left-color: var(--danger); }
+@keyframes toastIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0);} }
+
+.footer { text-align: center; color: var(--text-dim); font-size: 12px; padding: 20px 10px 30px; }
+
+.reset-button {
+  margin-top: 14px;
+  cursor: pointer;
+  border: 1px solid rgba(255,107,107,.4);
+  background: rgba(255,107,107,.08);
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: background .15s ease, transform .06s ease;
+}
+.reset-button:hover { background: rgba(255,107,107,.18); }
+.reset-button:active { transform: scale(.97); }
+.reset-button:disabled { opacity: .5; cursor: not-allowed; }
+
+@media (max-width: 820px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "click"
+      "upgrades"
+      "monetization";
+  }
+  .click-button { width: 150px; height: 150px; }
+  .click-button-emoji { font-size: 44px; }
+  .topbar-title h1 { font-size: 17px; }
+  .resource-value { font-size: 21px; }
+}

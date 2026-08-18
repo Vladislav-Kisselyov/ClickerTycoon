@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Мемный Кот: Империя Мяумонет</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-title">
+      <span class="cat-emoji">🐱</span>
+      <div>
+        <h1>Мемный Кот</h1>
+        <p id="stageName" class="stage-name">Дворовый кот</p>
+      </div>
+    </div>
+    <div class="topbar-resource">
+      <div id="resourceValue" class="resource-value">0</div>
+      <div class="resource-label">МяуМонет</div>
+    </div>
+  </header>
+
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <main class="layout">
+
+    <section class="panel click-panel">
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-label">За клик</span>
+          <span id="clickValue" class="stat-value">1</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Шанс крита</span>
+          <span id="critChance" class="stat-value">5%</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Авто-доход</span>
+          <span id="autoRate" class="stat-value">0 / сек</span>
+        </div>
+      </div>
+
+      <div id="activeEffects" class="active-effects"></div>
+
+      <div id="crisisBanner" class="crisis-banner hidden">
+        ⚠️ Алгоритмы разлюбили канал. Осталось действий: <span id="crisisCount">0</span>
+      </div>
+
+      <div class="click-area">
+        <button id="clickButton" class="click-button" type="button" aria-label="Погладить кота">
+          <span class="click-button-emoji">🐾</span>
+          <span class="click-button-text">Погладить кота</span>
+        </button>
+        <div id="floatingLayer" class="floating-layer"></div>
+      </div>
+
+      <div class="stage-progress">
+        <div class="stage-progress-label">
+          <span id="nextStageLabel">Следующий этап: —</span>
+          <span id="stageProgressPercent">0%</span>
+        </div>
+        <div class="stage-progress-bar">
+          <div id="stageProgressFill" class="stage-progress-fill"></div>
+        </div>
+        <p id="stageDescription" class="stage-description"></p>
+      </div>
+    </section>
+
+    <section class="panel upgrades-panel">
+      <h2>Улучшения</h2>
+      <div id="upgradesList" class="upgrades-list"></div>
+    </section>
+
+    <section class="panel monetization-panel">
+      <h2>Монетизация <span class="sim-badge">симуляция</span></h2>
+      <div id="monetizationList" class="monetization-list"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Прогресс сохраняется автоматически на сервере · Этап <span id="footerStage">1</span> из 3</p>
+    <button id="resetButton" class="reset-button" type="button">Сбросить прогресс</button>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

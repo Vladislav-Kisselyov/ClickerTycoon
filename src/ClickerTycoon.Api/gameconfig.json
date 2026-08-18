@@ -1,0 +1,155 @@
+{
+  "BaseClickValue": 1,
+  "BaseCritChance": 0.05,
+  "CritMultiplier": 5,
+  "MaxOfflineSeconds": 3600,
+
+  "Upgrades": [
+    {
+      "Id": "itchy-paws",
+      "Name": "Чешутся лапки",
+      "Description": "Кот наловчился царапать быстрее — каждый клик приносит больше мяумонет.",
+      "Icon": "🐾",
+      "EffectType": "ClickPercent",
+      "EffectValuePerLevel": 0.20,
+      "BaseCost": 10,
+      "CostGrowth": 1.15,
+      "MaxLevel": 50,
+      "RequiredStage": 1,
+      "ChangesMechanic": false
+    },
+    {
+      "Id": "purring",
+      "Name": "Мурчание",
+      "Description": "Довольный кот мурчит громче и собирает больше внимания зрителей.",
+      "Icon": "😻",
+      "EffectType": "ClickFlat",
+      "EffectValuePerLevel": 1,
+      "BaseCost": 25,
+      "CostGrowth": 1.15,
+      "MaxLevel": 100,
+      "RequiredStage": 1,
+      "ChangesMechanic": false
+    },
+    {
+      "Id": "auto-feeder",
+      "Name": "Автокормушка",
+      "Description": "Автоматически подкидывает котику корм и мемы — доход начинает идти сам по себе, даже когда ты не кликаешь.",
+      "Icon": "🥫",
+      "EffectType": "AutomationFlat",
+      "EffectValuePerLevel": 2,
+      "BaseCost": 100,
+      "CostGrowth": 1.20,
+      "MaxLevel": 50,
+      "RequiredStage": 1,
+      "ChangesMechanic": true
+    },
+    {
+      "Id": "clickbait-title",
+      "Name": "Кликбейт-заголовок",
+      "Description": "«Вы не поверите, что сделал этот кот!» — шанс на критический всплеск просмотров при каждом клике.",
+      "Icon": "📰",
+      "EffectType": "CritChance",
+      "EffectValuePerLevel": 0.03,
+      "BaseCost": 150,
+      "CostGrowth": 1.20,
+      "MaxLevel": 15,
+      "RequiredStage": 1,
+      "ChangesMechanic": true
+    },
+    {
+      "Id": "bot-followers",
+      "Name": "Боты-подписчики",
+      "Description": "Накрученные подписчики усиливают автоматический доход канала.",
+      "Icon": "🤖",
+      "EffectType": "AutomationPercent",
+      "EffectValuePerLevel": 0.15,
+      "BaseCost": 500,
+      "CostGrowth": 1.25,
+      "MaxLevel": 40,
+      "RequiredStage": 2,
+      "ChangesMechanic": false
+    },
+    {
+      "Id": "viral-hashtag",
+      "Name": "Вирусный хэштег",
+      "Description": "#КотДня повышает шанс, что очередной ролик неожиданно завирусится.",
+      "Icon": "#️⃣",
+      "EffectType": "ViralChanceBonus",
+      "EffectValuePerLevel": 0.008,
+      "BaseCost": 800,
+      "CostGrowth": 1.30,
+      "MaxLevel": 20,
+      "RequiredStage": 2,
+      "ChangesMechanic": true
+    },
+    {
+      "Id": "professional-studio",
+      "Name": "Профессиональная студия",
+      "Description": "Полноценная съёмочная студия для кота — качество контента, а с ним и доход, выходят на новый уровень.",
+      "Icon": "🎬",
+      "EffectType": "ClickPercent",
+      "EffectValuePerLevel": 0.50,
+      "BaseCost": 5000,
+      "CostGrowth": 1.20,
+      "MaxLevel": 20,
+      "RequiredStage": 3,
+      "ChangesMechanic": false
+    }
+  ],
+
+  "Stages": [
+    {
+      "Id": 1,
+      "Name": "Дворовый кот",
+      "Description": "Обычный дворовый кот только начинает путь к славе. Всё держится на ручных кликах.",
+      "ResourceRequired": 0,
+      "RequiredUpgradeId": null,
+      "Unlocks": [ "Ручное получение мяумонет", "Базовые улучшения" ]
+    },
+    {
+      "Id": 2,
+      "Name": "Интернет-знаменитость",
+      "Description": "Кот обзавёлся автокормушкой и начал набирать подписчиков — доход теперь течёт даже без кликов.",
+      "ResourceRequired": 1000,
+      "RequiredUpgradeId": "auto-feeder",
+      "Unlocks": [ "Автоматический доход", "Улучшения «Боты-подписчики» и «Вирусный хэштег»", "Случайные события: вирусность, кризис, кража аккаунта" ]
+    },
+    {
+      "Id": 3,
+      "Name": "Мемная империя",
+      "Description": "Кот стал мемной иконой планетарного масштаба. Открыта профессиональная студия и самые дорогие улучшения.",
+      "ResourceRequired": 50000,
+      "RequiredUpgradeId": "bot-followers",
+      "Unlocks": [ "Профессиональная студия", "Максимальный потенциал экономики" ]
+    }
+  ],
+
+  "Events": {
+    "ViralEventChancePerClick": 0.01,
+    "ViralEventDurationSeconds": 30,
+    "ViralEventMultiplier": 3.0,
+
+    "CrisisEventChancePerClick": 0.006,
+    "CrisisClicksToResolve": 8,
+    "CrisisIncomeMultiplier": 0.4,
+
+    "CatStoleEventChancePerClick": 0.004,
+    "CatStoleLossPercent": 0.15,
+    "CatStoleBoostDurationSeconds": 20,
+    "CatStoleBoostMultiplier": 2.0,
+
+    "MinClicksBetweenEvents": 15
+  },
+
+  "Monetization": {
+    "AdBoostDurationSeconds": 60,
+    "AdBoostMultiplier": 2.0,
+
+    "PremiumCameraClickPercentBonus": 0.25,
+
+    "StarterPackResourceAmount": 500,
+    "StarterPackBoostDurationSeconds": 60,
+    "StarterPackBoostMultiplier": 1.5
+  }
+}
